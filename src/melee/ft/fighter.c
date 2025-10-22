@@ -133,11 +133,11 @@ HSD_Joint* Fighter_804D6504 = NULL;
 u8* Fighter_804D6508 = NULL;
 u8* Fighter_804D650C = NULL;
 UNK_T Fighter_804D6510 = NULL;
-UNK_T Fighter_804D6514 = NULL;
-UNK_T Fighter_804D6518 = NULL;
-float* Fighter_804D651C = NULL;
-float* Fighter_804D6520 = NULL;
-float* Fighter_804D6524 = NULL;
+HSD_Joint* Fighter_804D6514 = NULL;
+struct Fighter_804D6518_t* Fighter_804D6518 = NULL;
+struct Fighter_804D651C_t* Fighter_804D651C = NULL;
+struct Fighter_804D6520_t* Fighter_804D6520 = NULL;
+struct Fighter_804D6524_t* Fighter_804D6524 = NULL;
 struct Fighter_804D6528_t* Fighter_804D6528 = NULL;
 UNK_T Fighter_804D652C = NULL;
 Vec2** Fighter_804D6530 = NULL;
@@ -2365,7 +2365,7 @@ void Fighter_procUpdate(Fighter_GObj* gobj)
         // __assert functions. But I guess these just stop or reset the game.
         // result is written to where r5 points to, which is 'difference' in
         // this case
-        if (mpLib_800567C0(fp->coll_data.floor.index, &fp->cur_pos,
+        if (mpGetSpeed(fp->coll_data.floor.index, &fp->cur_pos,
                            &difference))
         {
             // fp->position += difference
