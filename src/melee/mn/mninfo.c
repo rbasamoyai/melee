@@ -1,4 +1,5 @@
 #include "mninfo.h"
+#include "baselib/forward.h"
 
 #include "placeholder.h"
 
@@ -52,21 +53,31 @@ s32 mnInfo_80251AA4(void)
 
 /// #mnInfo_80251D58
 
+inline MnInfoData* mnInfo_GetInfoData(HSD_GObj* gobj)
+{
+    return (MnInfoData*) gobj->user_data;
+}
+
+inline void mnInfo_80251F04_inline1(HSD_Text* text)
+{
+    text->font_size.x = 0.035f;
+    text->font_size.y = 0.035f;
+}
+
 void mnInfo_80251F04(HSD_GObj* gobj, u32 idx, u32 arg2)
 {
-    MnInfoData* data;
+    MnInfoData* data = mnInfo_GetInfoData(gobj);
     HSD_Text* text;
     s16 sp16;
+    PAD_STACK(2);
 
-    data = gobj->user_data;
     if (data->right_column[idx] != NULL) {
         HSD_SisLib_803A5CC4(data->right_column[idx]);
     }
-    text = HSD_SisLib_803A5ACC(0, 0, -5.0f, (3.45f * idx) + -5.9f, 17.0f,
+    text = HSD_SisLib_803A5ACC(0, 0, -5.0f, (3.45f * (s32) idx) + -5.9f, 17.0f,
                                514.2857f, 142.85715f);
     data->right_column[idx] = text;
-    text->font_size.x = 0.035f;
-    text->font_size.y = 0.035f;
+    mnInfo_80251F04_inline1(text);
     text->default_fitting = 1;
     un_802FE3F8((s32) arg2, 0x4BD, &sp16, NULL);
     HSD_SisLib_803A6368(text, (s32) (u16) sp16);
